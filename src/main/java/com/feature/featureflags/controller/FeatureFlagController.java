@@ -18,22 +18,22 @@ public class FeatureFlagController {
     public List<FeatureFlag> getAllFeatureFlags() {
         return featureFlagService.getAllFeatureFlags();
     }
-    @GetMapping("/{id}")
-    public FeatureFlag getFlagById(@PathVariable Long id) {
-        return featureFlagService.getFlagById(id);
+    @GetMapping("/{name}")
+    public FeatureFlag getFlagById(@PathVariable String name) {
+        return featureFlagService.getFlagById(name);
     }
     @PostMapping
     public FeatureFlag createFeatureFlag(@RequestBody FeatureFlag featureFlag) {
         return featureFlagService.createFeatureFlag(featureFlag);
     }
 
-    @PutMapping("/{id}")
-    public FeatureFlag updateFeatureFlag(@PathVariable Long id, @RequestBody FeatureFlag featureFlag) {
-        return featureFlagService.updateFeatureFlag(id, featureFlag);
+    @PutMapping
+    public FeatureFlag updateFeatureFlag(@RequestParam String name, @RequestParam Boolean enabled) {
+        return featureFlagService.updateFeatureFlag(name, enabled);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteFeatureFlag(@PathVariable Long id) {
-        featureFlagService.deleteFeatureFlag(id);
+    @DeleteMapping("/{name}")
+    public void deleteFeatureFlag(@PathVariable String name) {
+        featureFlagService.deleteFeatureFlag(name);
     }
 }
